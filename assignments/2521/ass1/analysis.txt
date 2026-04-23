@@ -1,0 +1,70 @@
+
+========================================================================
+                          Complexity Analysis
+========================================================================
+
+NOTE:
+- Your time complexities should be in big-O notation.
+- Your time complexities should be in terms of n and m, where n and m
+  are the number of elements in each of the sets respectively.
+- You must assume that the underlying binary search trees are balanced,
+  even though your implementation might not use a balanced BST yet.
+
+-----------------
+    SetUnion
+-----------------
+
+Worst-case time complexity: O(n + m)
+
+Explanation: my algorithm traverses through each node in the two trees and for 
+each occurence the item will be added to the set. The time complexity is thus
+always O(n + m)
+
+
+-----------------
+ SetIntersection
+-----------------
+
+Worst-case time complexity: O(nlog(m))
+
+Explanation: My algorithm will always make m the number nodes of the larger set.
+The algorithm will search the larger set for every node of the smaller set so
+the time complexity will be nlog(m).
+
+
+-----------------
+    SetEquals
+-----------------
+
+Worst-case time complexity: O(nlog(m))
+
+Explanation: In the worst case my algorithm searches the m set for every n node
+so the worst case time complexity (i.e. if the sets are equal or the right most
+node is not equal), will be log2(m) searches for every n nodes; hence O(nlog(m))
+
+
+-----------------
+    SetSubset
+-----------------
+
+Worst-case time complexity: O(nlog(m))
+
+Explanation: Similar to 
+
+
+========================================================================
+               Design Documentation for Cursor Operations
+========================================================================
+
+If you completed the cursor operations, you must explain the design and
+implementation of your solution here.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+
+NOTE:
+- Your time complexities should be expressed in big-O notation and be in
+  terms of either:
+  - n, where n is the number of nodes in the tree, or
+  - h, where h is the height of the tree
+
+=================
+  bstNumLeaves
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: to count every leaf we need to traverse every node in the graph
+hence the time complexity will be proportional to the nodes in the tree.
+
+=================
+    bstRange
+=================
+
+- Worst case time complexity: O(h)
+
+- Explanation: Need to traverse to the leftmost and right most branch in the 
+graph so we only need to check two branches. Hence the worst case time complexity
+will be proportional to the height of the tree i.e. O(2n) which is O(n)
+
+=================
+ bstDeleteLeaves
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: to delete every leaf we need to traverse every node in the graph
+hence the time complexity will be proportional to the nodes in the tree.
+
+=================
+  bstLevelOrder
+=================
+
+- Worst case time complexity: O(n)
+
+- Explanation: In order to list out all the nodes in level order, we must 
+traverse every node in the graph - hence the time complexity must be 
+proportional to the nodes in the graph.
+
+

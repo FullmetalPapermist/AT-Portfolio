@@ -1,0 +1,408 @@
+
+NOTE: Write your answers to Part 1 here!
+
+=================================
+    Program 1: listAddStart.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./listAddStart
+3 1 4 1 5
+=================================================================
+==322322==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000018 at pc 0x56096018a60b bp 0x7fff8b2f2d30 sp 0x7fff8b2f2d28
+WRITE of size 8 at 0x602000000018 thread T0
+    #0 0x56096018a60a in newNode /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:43:10
+    #1 0x56096018a086 in listAddStart /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:30:19
+    #2 0x560960189fe9 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:22:10
+    #3 0x7f40ebe3a249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #4 0x7f40ebe3a304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #5 0x5609600cc310 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart+0x21310) (BuildId: 42cd899ecdd642e6ea5828a9a5307784e4cdcc9a)
+
+0x602000000018 is located 0 bytes to the right of 8-byte region [0x602000000010,0x602000000018)
+allocated by thread T0 here:
+    #0 0x56096014f15e in __interceptor_malloc (/import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart+0xa415e) (BuildId: 42cd899ecdd642e6ea5828a9a5307784e4cdcc9a)
+    #1 0x56096018a464 in newNode /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:36:19
+    #2 0x56096018a086 in listAddStart /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:30:19
+    #3 0x560960189fe9 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:22:10
+    #4 0x7f40ebe3a249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /import/kamen/2/z5477240/2521/lab01/sanitizers/listAddStart.c:43:10 in newNode
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa 00[fa]fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==322322==ABORTING
+
+
+Briefly explain what is wrong with the program:
+
+Line 36: malloc allocates for the size of a pointer not of the struct node
+
+=================================
+    Program 2: shuffleArray.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./shuffleArray
+Enter array size: 5
+Enter array values: 3 1 4 1 5
+=================================================================
+==335602==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000015 at pc 0x55ab102718e0 bp 0x7fff224c81f0 sp 0x7fff224c7978
+WRITE of size 4 at 0x602000000015 thread T0
+    #0 0x55ab102718df in scanf_common(void*, int, bool, char const*, __va_list_tag*) asan_interceptors.cpp.o
+    #1 0x55ab10272326 in __interceptor___isoc99_scanf (/import/kamen/2/z5477240/2521/lab01/sanitizers/shuffleArray+0x42326) (BuildId: 2fa8d0138b0c46b4446e069b43f909db40fea199)
+    #2 0x55ab1030f242 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/shuffleArray.c:28:30
+    #3 0x7f204f845249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #4 0x7f204f845304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #5 0x55ab10251330 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/shuffleArray+0x21330) (BuildId: 2fa8d0138b0c46b4446e069b43f909db40fea199)
+
+0x602000000015 is located 0 bytes to the right of 5-byte region [0x602000000010,0x602000000015)
+allocated by thread T0 here:
+    #0 0x55ab102d417e in __interceptor_malloc (/import/kamen/2/z5477240/2521/lab01/sanitizers/shuffleArray+0xa417e) (BuildId: 2fa8d0138b0c46b4446e069b43f909db40fea199)
+    #1 0x55ab1030f0e0 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/shuffleArray.c:20:14
+    #2 0x7f204f845249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow asan_interceptors.cpp.o in scanf_common(void*, int, bool, char const*, __va_list_tag*)
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa[05]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==335602==ABORTING
+
+
+Briefly explain what is wrong with the program:
+Line 20: Integers require more than one byte so to allocate memory for 
+an array of integers *vals requires maxVals * 2 bytes of memory    
+
+
+=================================
+    Program 3: reverseArray.c
+=================================
+
+Paste the error message here:
+z5477240@vx11:~/2521/lab01/sanitizers$ ./reverseArray
+Enter array size: 5
+Enter array values: 3 1 424  4 2
+Original array: [3, 1, 424, 4, 2]
+=================================================================
+==368597==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000054 at pc 0x5623eba4170a bp 0x7ffde5154020 sp 0x7ffde5154018
+READ of size 4 at 0x603000000054 thread T0
+    #0 0x5623eba41709 in reverse /import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray.c:42:12
+    #1 0x5623eba412a2 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray.c:31:2
+    #2 0x7f1e7e9dd249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f1e7e9dd304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x5623eb983310 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray+0x21310) (BuildId: 7302f9fdcb477f8e66a2e0e2443c239c3a3b9287)
+
+0x603000000054 is located 0 bytes to the right of 20-byte region [0x603000000040,0x603000000054)
+allocated by thread T0 here:
+    #0 0x5623eba0615e in __interceptor_malloc (/import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray+0xa415e) (BuildId: 7302f9fdcb477f8e66a2e0e2443c239c3a3b9287)
+    #1 0x5623eba410b4 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray.c:17:14
+    #2 0x7f1e7e9dd249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /import/kamen/2/z5477240/2521/lab01/sanitizers/reverseArray.c:42:12 in reverse
+Shadow bytes around the buggy address:
+  0x0c067fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c067fff8000: fa fa 00 00 00 fa fa fa 00 00[04]fa fa fa fa fa
+  0x0c067fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==368597==ABORTING
+
+
+Briefly explain what is wrong with the program:
+
+Lines 43,44: for the first iteration of the for loop, the program will 
+access the arr[maxVals] which is outside of the declared memory allocation. 
+
+=================================
+    Program 4: listPrepend.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./listPrepend
+1 2 3 4
+listPrepend.c:46:22: runtime error: member access within misaligned address 0xbebebebebebebebe for type 'struct node', which requires 8 byte alignment
+0xbebebebebebebebe: note: pointer points here
+<memory cannot be printed>
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listPrepend.c:46:22 in 
+listPrepend.c:46:22: runtime error: load of misaligned address 0xbebebebebebebebe for type 'int', which requires 8 byte alignment
+0xbebebebebebebebe: note: pointer points here
+<memory cannot be printed>
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listPrepend.c:46:22 in 
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==407491==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x55e9c63de31e bp 0x7fff2b107cf0 sp 0x7fff2b107cb0 T0)
+==407491==The signal is caused by a READ memory access.
+==407491==Hint: this fault was caused by a dereference of a high value address (see register values below).  Disassemble the provided pc to learn which register was used.
+    #0 0x55e9c63de31e in printList /import/kamen/2/z5477240/2521/lab01/sanitizers/listPrepend.c:46:22
+    #1 0x55e9c63ddffb in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listPrepend.c:23:2
+    #2 0x7fddbd978249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7fddbd978304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x55e9c6320310 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/listPrepend+0x21310) (BuildId: 70e443ec5e5cc4cb0bfa8d79cd5bd0b071d1b3b9)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /import/kamen/2/z5477240/2521/lab01/sanitizers/listPrepend.c:46:22 in printList
+==407491==ABORTING
+
+
+Briefly explain what is wrong with the program:
+Line 46: when list was created the tail node does not have the next pointer 
+pointing to null and so the for loop in line 45 does not terminate. Since curr
+then points to an uninitialised value which does not have value. 
+
+=================================
+     Program 5: listAppend.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./listAppend
+3 2 1 
+listAppend.c:37:8: runtime error: member access within null pointer of type 'struct node'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior listAppend.c:37:8 in 
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==434512==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x5563835681e6 bp 0x7fff4c2f9830 sp 0x7fff4c2f97e0 T0)
+==434512==The signal is caused by a WRITE memory access.
+==434512==Hint: address points to the zero page.
+    #0 0x5563835681e6 in listAppend /import/kamen/2/z5477240/2521/lab01/sanitizers/listAppend.c:37:13
+    #1 0x556383567fe9 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listAppend.c:21:10
+    #2 0x7f039d7f7249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f039d7f7304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x5563834aa310 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/listAppend+0x21310) (BuildId: 4bddfcf05ba8cbb3296fdcbb91f02fdc3e655764)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /import/kamen/2/z5477240/2521/lab01/sanitizers/listAppend.c:37:13 in listAppend
+==434512==ABORTING
+
+Briefly explain what is wrong with the program:
+
+Line 37: the while loop ends when the curr pointer points to null and hence
+the line fails as null does not have a "value" to write to.
+
+=================================
+  Program 6: listDeleteFirst.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./listDeleteFirst
+3 1 4
+List before: [3, 1, 4]
+=================================================================
+==443199==ERROR: AddressSanitizer: heap-use-after-free on address 0x602000000018 at pc 0x560c992385b7 bp 0x7ffe34026800 sp 0x7ffe340267f8
+READ of size 8 at 0x602000000018 thread T0
+    #0 0x560c992385b6 in listDeleteFirst /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:49:15
+    #1 0x560c9923822e in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:35:9
+    #2 0x7ff693c26249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7ff693c26304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x560c9917a300 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst+0x21300) (BuildId: 41f9569b1c4c27adb0ab06d084c7ebcbb21fc5cd)
+
+0x602000000018 is located 8 bytes inside of 16-byte region [0x602000000010,0x602000000020)
+freed by thread T0 here:
+    #0 0x560c991fcea2 in free (/import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst+0xa3ea2) (BuildId: 41f9569b1c4c27adb0ab06d084c7ebcbb21fc5cd)
+    #1 0x560c9923852c in listDeleteFirst /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:48:2
+    #2 0x560c9923822e in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:35:9
+    #3 0x7ff693c26249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+previously allocated by thread T0 here:
+    #0 0x560c991fd14e in __interceptor_malloc (/import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst+0xa414e) (BuildId: 41f9569b1c4c27adb0ab06d084c7ebcbb21fc5cd)
+    #1 0x560c99237fa4 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:21:20
+    #2 0x7ff693c26249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-use-after-free /import/kamen/2/z5477240/2521/lab01/sanitizers/listDeleteFirst.c:49:15 in listDeleteFirst
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa fd[fd]fa fa 00 00 fa fa 00 00 fa fa fa fa
+  0x0c047fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==443199==ABORTING
+
+Briefly explain what is wrong with the program:
+
+Line 49: list has been freed - the program cannot retrieve list->next
+
+=================================
+    Program 7: listNumEvens.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./listNumEvens
+1 2 3
+==474059==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x563f82e4d3a8 in listNumEvens /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:30:7
+    #1 0x563f82e4c5b0 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:23:40
+    #2 0x7fc0fd5b0249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7fc0fd5b0304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x563f82dc62b0 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens+0x212b0) (BuildId: 3cb3f5ba651143509da7389433f5e96c0bbe1528)
+
+  Uninitialized value was created by a heap allocation
+    #0 0x563f82dfaca0 in __interceptor_malloc (/import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens+0x55ca0) (BuildId: 3cb3f5ba651143509da7389433f5e96c0bbe1528)
+    #1 0x563f82e4db7b in newNode /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:51:19
+    #2 0x563f82e4c8f0 in listAppend /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:39:10
+    #3 0x563f82e4c4d3 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:20:10
+    #4 0x7fc0fd5b0249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value /import/kamen/2/z5477240/2521/lab01/sanitizers/listNumEvens.c:30:7 in listNumEvens
+Exiting
+
+Briefly explain what is wrong with the program:
+
+Line 30: newNode function does not assign a value to the node and hence, 
+curr->value is still uninitialised and cannot be accessed.
+
+=================================
+ Program 8: mostFrequentLetter.c
+=================================
+
+Paste the error message here:
+
+z5477240@vx11:~/2521/lab01/sanitizers$ ./mostFrequentLetter
+Enter some text: the quick brown fox jumps over the lazy dog
+==506176==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x559f9723b620 in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:35:7
+    #1 0x559f9723a411 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f02f23fa249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #3 0x7f02f23fa304 in __libc_start_main csu/../csu/libc-start.c:360:3
+    #4 0x559f971b42a0 in _start (/import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter+0x212a0) (BuildId: 6d4ab1032ecfa74c10adbbbeb5bbd5f40948ccb7)
+
+  Uninitialized value was stored to memory at
+    #0 0x559f9723ad2d in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:26:24
+    #1 0x559f9723a411 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f02f23fa249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+  Uninitialized value was stored to memory at
+    #0 0x559f9723ad2d in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:26:24
+    #1 0x559f9723a411 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f02f23fa249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+  Uninitialized value was stored to memory at
+    #0 0x559f9723ad2d in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:26:24
+    #1 0x559f9723a411 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f02f23fa249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+  Uninitialized value was stored to memory at
+    #0 0x559f9723ad2d in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:26:24
+    #1 0x559f9723a411 in main /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:17:16
+    #2 0x7f02f23fa249 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+  Uninitialized value was created by an allocation of 'counts' in the stack frame of function 'mostFrequent'
+    #0 0x559f9723a550 in mostFrequent /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:21
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value /import/kamen/2/z5477240/2521/lab01/sanitizers/mostFrequentLetter.c:35:7 in mostFrequent
+Exiting
+
+Briefly explain what is wrong with the program:
+
+Line 26: The program tries to add 1 to the value stored, but all the integers
+stored in the counts array are uninitialised and so the program fails.
+

@@ -1,0 +1,32 @@
++ Harry
++ Ron
++ Hermione
+n Harry
+f Harry Ron
+f Ron Hermione
+n Harry
+n Ron
+n Hermione
+u Harry Ron
+n Harry
+n Ron
+f Harry Ron
++ Neville
+f Harry Hermione
+m Harry Hermione
+m Hermione Ron
+m Neville Ron
++ Luna
+f Harry Neville
+f Hermione Neville
+f Harry Luna
+r Ron
++ Ginny
+f Ron Ginny
+f Harry Ginny
++ Lavender
+f Harry Lavender
+f Ginny Hermione
+f Lavender Hermione
+f Lavender Ginny
+r Ron

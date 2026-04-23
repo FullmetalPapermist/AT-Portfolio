@@ -1,0 +1,40 @@
+create table R (
+    R_id integer,
+    R_is_a char(1) not null check (R_is_a in ('A', 'B', 'C'))
+    R_x text,
+    A_y text,
+    primary key (R_id)
+);
+
+create Table Rz (
+    R integer references R(id)
+    z text
+)
+
+cannot enfore RZ only references R when R is a C
+
+ER
+create table R (
+    id integer
+    x text
+)
+
+create table A (
+    id integer references R(id)
+    y text
+)
+
+create table B (
+    id integer references R(id)
+)
+
+create table C (
+    id integer references R(id)
+)
+create table Cz (
+    C integer references C(R)
+    z text
+)
+
+cannot enforce disjoint
+Cannot restrict total participation 

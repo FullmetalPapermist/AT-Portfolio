@@ -1,0 +1,51 @@
+
+NOTE:
+- Your time complexities should be expressed in big-O notation and be in
+  terms of n, where n is the number of people who  have  been  added  to
+  Friendbook.
+
+===============
+ FbNumFriends
+===============
+
+- Worst case time complexity: O(n)
+
+- Explanation: Assuming a balanced tree the time complexity to search is O(log(n)),
+while to go through the list of friends is at worst O(n) since one can have up 
+to n-1 friends and to count the linked list one must traverse through the list.
+Thus the worst case time complexity is O(n).
+
+===============
+  FbUnfriend
+===============
+
+- Worst case time complexity: O(n)
+
+- Explanation: The most lengthy operation of this function is to traverse the 
+list of edges between n people. This means that at worst the time complexity 
+is O(n) since there can only be n-1 connections between people.
+
+===============
+FbMutualFriends
+===============
+
+- Worst case time complexity: O(n)
+
+- Explanation: The operations of this functions include traversing through the
+list of friends which has a worst case time complexity of O(n) and performing a 
+search on a AVL tree which has a worst case time complexity of O(log(n)). 
+Therefore the worst case time complexity for this function is O(n).
+
+===============
+ FbFriendRecs1
+===============
+
+- Worst case time complexity: O(n^3)
+
+- Explanation: In the worst case the function will go iterate through every 
+friend of the person which has an O(n) time complexity and for each friend then
+iterate through their friends which has an O(n) time complexity. For each of 
+these it will check the mutuals with the original name and which has a worst 
+case time complexity of O(n). Therefore the worst case time complexity in all
+will be O(n^3) as there are 3 O(n) operations iterated over each other.  
+

@@ -1,0 +1,25 @@
+
+NOTE:
+- Your time complexities should be expressed in big-O notation and be in
+  terms of n, where n is the number of cells in the maze.
+
+============
+  solveBfs
+============
+
+- Worst case time complexity: O(n) O(n^2) for display
+
+- Explanation: 
+  At worst for each node there are 4 edges to go to and the algorithm would
+  check at most n nodes (checking all nodes in the maze.) Hence the worst case
+  time complexity would be proportional to 5n or O(n).
+============
+  solveDfs
+============
+
+- Worst case time complexity: O(n) O(n^2) for display
+
+- Explanation: Similar to Bfs, there are at most 4 edges to check for each node
+and in the worst case all nodes are checked. Therefore the time complexity must
+be proportional to 5n or O(n). 
+
