@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"editor.autoClosingBrackets": "always",
+		"editor.quickSuggestions": {
+			"strings": "on"
+		}
+	}
+}
