@@ -1,0 +1,48 @@
+{
+    "entities": [
+        {
+            "type": "player",
+            "x": 1,
+            "y": 1
+        },
+        {
+            "type": "boulder",
+            "x": 2,
+            "y": 1
+        },
+        {
+            "type": "switch",
+            "x": 3,
+            "y": 1
+        },
+        {
+            "type": "wire",
+            "x": 4,
+            "y": 1
+        },
+        {
+            "type": "bomb",
+            "logic": "or",
+            "x": 5,
+            "y": 1
+        },
+        {
+            "type": "wall",
+            "x": 5,
+            "y": 2
+        },
+        {
+            "type": "wall",
+            "x": 5,
+            "y": 3
+        },
+        {
+            "type": "treasure",
+            "x": 6,
+            "y": 2
+        }
+    ],
+    "goal-condition": {
+        "goal": "exit"
+    }
+}
